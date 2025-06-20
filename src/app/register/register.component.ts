@@ -8,6 +8,7 @@ import { FormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { Cliente } from "./cliente";
+import { ClienteService } from "../cliente.service";
 
 @Component({
   selector: "app-register",
@@ -26,8 +27,10 @@ import { Cliente } from "./cliente";
 export class RegisterComponent {
   cliente: Cliente = Cliente.newCliente();
 
+  constructor(private service: ClienteService) {}
+
   onSubmit() {
     console.log("Form submitted:", this.cliente);
-    // Aqui você pode adicionar a lógica para enviar os dados do cliente
+    this.service.salvar(this.cliente);
   }
 }
