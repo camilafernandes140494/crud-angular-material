@@ -1,1 +1,31 @@
-<p>register works!</p>
+<div fxLayout="row" fxLayoutAlign="center">
+  <div fxLayout="column" fxFlex="1000px">
+    <form class="mt-60" #clientesFrm="ngForm">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Cadastro de Clientes</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="mt-20">
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+            <mat-form-field class="full-width">
+              <mat-label>Nome</mat-label>
+              <input matInput name="nome" placeholder="Camila Fernandes" />
+              <!-- <mat-error *ngIf="clientesFrm.controls.nome?.errors?.required"
+                  >O nome é obrigatório.</mat-error
+                > -->
+            </mat-form-field>
+          </div>
+
+          <!-- <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!clientesFrm.valid"
+          >
+            Cadastrar
+          </button> -->
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+</div>
