@@ -7,6 +7,7 @@ import { MatInputModule } from "@angular/material/input";
 import { FormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
+import { Cliente } from "./cliente";
 
 @Component({
   selector: "app-register",
@@ -22,4 +23,11 @@ import { MatButtonModule } from "@angular/material/button";
   templateUrl: "./register.component.html",
   styleUrl: "./register.component.scss",
 })
-export class RegisterComponent {}
+export class RegisterComponent {
+  cliente: Cliente = Cliente.newCliente();
+
+  onSubmit() {
+    console.log("Form submitted:", this.cliente);
+    // Aqui você pode adicionar a lógica para enviar os dados do cliente
+  }
+}

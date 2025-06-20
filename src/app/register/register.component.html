@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="center">
   <div fxLayout="column" fxFlex="1000px">
-    <form class="mt-60" #clientesFrm="ngForm">
+    <form class="mt-60" #clientesFrm="ngForm" (ngSubmit)="onSubmit()">
       <mat-card>
         <mat-card-header>
           <mat-card-title>Cadastro de Clientes</mat-card-title>
@@ -10,7 +10,12 @@
             <div fxLayout="column" fxFlex="100%">
               <mat-form-field class="full-width">
                 <mat-label>Nome *</mat-label>
-                <input matInput name="nome" placeholder="Camila Fernandes" />
+                <input
+                  matInput
+                  name="name"
+                  [(ngModel)]="cliente.name"
+                  placeholder="Camila Fernandes"
+                />
               </mat-form-field>
             </div>
           </div>
@@ -18,7 +23,12 @@
             <div fxLayout="column" fxFlex="100%">
               <mat-form-field class="full-width">
                 <mat-label>Email *</mat-label>
-                <input matInput name="email" placeholder="camila@gmail.com" />
+                <input
+                  matInput
+                  name="email"
+                  [(ngModel)]="cliente.email"
+                  placeholder="camila@gmail.com"
+                />
               </mat-form-field>
             </div>
           </div>
@@ -26,7 +36,12 @@
             <div fxLayout="column" fxFlex="50%">
               <mat-form-field class="full-width">
                 <mat-label>CPF *</mat-label>
-                <input matInput name="cpf" placeholder="123456789" />
+                <input
+                  matInput
+                  name="cpf"
+                  [(ngModel)]="cliente.cpf"
+                  placeholder="123456789"
+                />
               </mat-form-field>
             </div>
           </div>
@@ -34,7 +49,12 @@
             <div fxLayout="column" fxFlex="50%">
               <mat-form-field class="full-width">
                 <mat-label>Data de nascimento *</mat-label>
-                <input matInput name="date-nasc" placeholder="14/04/1994" />
+                <input
+                  matInput
+                  name="dataNascimento"
+                  [(ngModel)]="cliente.dataNascimento"
+                  placeholder="14/04/1994"
+                />
               </mat-form-field>
             </div>
           </div>
@@ -59,7 +79,7 @@
             </button>
             <button
               mat-raised-button
-              color="primary"
+              color="accent"
               type="submit"
               [disabled]="!clientesFrm.valid"
             >
