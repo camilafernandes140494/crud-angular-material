@@ -7,23 +7,66 @@
         </mat-card-header>
         <mat-card-content class="mt-20">
           <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
-            <mat-form-field class="full-width">
-              <mat-label>Nome</mat-label>
-              <input matInput name="nome" placeholder="Camila Fernandes" />
-              <!-- <mat-error *ngIf="clientesFrm.controls.nome?.errors?.required"
-                  >O nome é obrigatório.</mat-error
-                > -->
-            </mat-form-field>
+            <div fxLayout="column" fxFlex="100%">
+              <mat-form-field class="full-width">
+                <mat-label>Nome *</mat-label>
+                <input matInput name="nome" placeholder="Camila Fernandes" />
+              </mat-form-field>
+            </div>
           </div>
-
-          <!-- <button
-            mat-raised-button
-            color="primary"
-            type="submit"
-            [disabled]="!clientesFrm.valid"
-          >
-            Cadastrar
-          </button> -->
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+            <div fxLayout="column" fxFlex="100%">
+              <mat-form-field class="full-width">
+                <mat-label>Email *</mat-label>
+                <input matInput name="email" placeholder="camila@gmail.com" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+            <div fxLayout="column" fxFlex="50%">
+              <mat-form-field class="full-width">
+                <mat-label>CPF *</mat-label>
+                <input matInput name="cpf" placeholder="123456789" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+            <div fxLayout="column" fxFlex="50%">
+              <mat-form-field class="full-width">
+                <mat-label>Data de nascimento *</mat-label>
+                <input matInput name="date-nasc" placeholder="14/04/1994" />
+              </mat-form-field>
+            </div>
+          </div>
+          <mat-card-actions fxLayoutGap="16px">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="!clientesFrm.valid"
+            >
+              <mat-icon fontIcon="save"></mat-icon>
+              Salvar
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="!clientesFrm.valid"
+            >
+              <mat-icon fontIcon="refresh"></mat-icon>
+              Atualizar
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="!clientesFrm.valid"
+            >
+              <mat-icon fontIcon="backspace"></mat-icon>
+              Limpar
+            </button>
+          </mat-card-actions>
         </mat-card-content>
       </mat-card>
     </form>
