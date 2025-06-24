@@ -30,7 +30,7 @@ export class RegisterComponent {
   constructor(private service: ClienteService) {}
 
   onSubmit() {
-    console.log("Form submitted:", this.cliente);
+    // console.log("Form submitted:", this.cliente);
     this.service.salvar(this.cliente);
   }
 }
