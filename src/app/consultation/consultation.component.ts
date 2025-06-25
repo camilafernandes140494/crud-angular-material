@@ -1,10 +1,12 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatInputModule } from "@angular/material/input";
 import { FormsModule } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { ClienteService } from "../cliente.service";
+import { Cliente } from "../register/cliente";
 
 @Component({
   selector: "app-consultation",
@@ -19,4 +21,12 @@ import { FlexLayoutModule } from "@angular/flex-layout";
   templateUrl: "./consultation.component.html",
   styleUrl: "./consultation.component.scss",
 })
-export class ConsultationComponent {}
+export class ConsultationComponent implements OnInit {
+  listaClientes: Cliente[] = [];
+
+  constructor(private service: ClienteService) {}
+
+  ngOnInit(): void {
+    this.listaClientes = this.service.pesquisarCliente("");
+  }
+}
