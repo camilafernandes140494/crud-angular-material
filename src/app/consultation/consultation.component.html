@@ -1,1 +1,31 @@
-<p>consultation works!</p>
+<div fxLayout="row" fxLayoutAlign="center">
+  <div fxLayout="column" fxFlex="1000px">
+    <form class="mt-60" #buscaForm="ngForm">
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>Consulta</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="mt-20">
+          <div fxLayout="row">
+            <div fxLayout="column" fxFlex="995px">
+              <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Nome</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  name="search"
+                  ngModel
+                  placeholder="Ex: Camila Fernandes"
+                />
+              </mat-form-field>
+              <button mat-raised-button color="primary">
+                <mat-icon fontIcon="search"></mat-icon>
+                Pesquisar
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+</div>
