@@ -15,7 +15,11 @@ export class ClienteService {
   }
 
   pesquisarCliente(nome: string): Cliente[] {
-    return this.ObterTodosClientes();
+    const clientes = this.ObterTodosClientes();
+    if (!nome) {
+      return clientes;
+    }
+    return clientes.filter((cliente) => cliente.name?.indexOf(nome) !== -1);
   }
 
   private ObterTodosClientes(): Cliente[] {
