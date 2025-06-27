@@ -36,6 +36,7 @@ export class ConsultationComponent implements OnInit {
     "email",
     "acoes",
   ];
+
   constructor(
     private service: ClienteService,
     private router: Router,
@@ -52,5 +53,13 @@ export class ConsultationComponent implements OnInit {
 
   preparaEditar(id: string): void {
     this.router.navigate(["/register"], { queryParams: { id: id } });
+  }
+
+  preparaDeletar(cliente: Cliente): void {
+    cliente.deletando = true;
+  }
+  deletar(cliente: Cliente): void {
+    this.service.deletar(cliente);
+    this.listaClientes = this.service.pesquisarCliente("");
   }
 }
