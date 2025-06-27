@@ -59,24 +59,28 @@
             </div>
           </div>
           <mat-card-actions fxLayoutGap="16px">
-            <button
-              mat-raised-button
-              color="primary"
-              type="submit"
-              [disabled]="!clientesFrm.valid"
-            >
-              <mat-icon fontIcon="save"></mat-icon>
-              Salvar
-            </button>
-            <button
-              mat-raised-button
-              color="primary"
-              type="submit"
-              [disabled]="!clientesFrm.valid"
-            >
-              <mat-icon fontIcon="refresh"></mat-icon>
-              Atualizar
-            </button>
+            @if (!atualizando) {
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="!clientesFrm.valid"
+              >
+                <mat-icon fontIcon="save"></mat-icon>
+                Salvar
+              </button>
+            } @else {
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="!clientesFrm.valid"
+              >
+                <mat-icon fontIcon="refresh"></mat-icon>
+                Atualizar
+              </button>
+            }
+
             <button
               mat-raised-button
               color="accent"
