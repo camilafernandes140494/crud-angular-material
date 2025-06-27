@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatCardModule } from "@angular/material/card";
@@ -9,6 +9,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { Cliente } from "./cliente";
 import { ClienteService } from "../cliente.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-register",
@@ -24,13 +25,32 @@ import { ClienteService } from "../cliente.service";
   templateUrl: "./register.component.html",
   styleUrl: "./register.component.scss",
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   cliente: Cliente = Cliente.newCliente();
+  atualizando: boolean = false;
 
-  constructor(private service: ClienteService) {}
+  constructor(
+    private service: ClienteService,
+    private route: ActivatedRoute,
+  ) {}
+
+  ngOnInit(): void {
+    this.route.queryParamMap.subscribe((query: any) => {
+      // const id = query.get("id");
+      const params = query["params"];
+      const id = params.id;
+      if (id) {
+        let clienteEncontrado = this.service.buscarClientePorId(id);
+        if (clienteEncontrado) {
+          this.atualizando = true;
+          this.cliente = clienteEncontrado;
+        }
+      }
+    });
+  }
 
   onSubmit() {
-    // console.log("Form submitted:", this.cliente);
     this.service.salvar(this.cliente);
+    this.cliente = Cliente.newCliente();
   }
 }
