@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatCardModule } from "@angular/material/card";
@@ -11,6 +11,7 @@ import { Cliente } from "./cliente";
 import { ClienteService } from "../cliente.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-register",
@@ -31,6 +32,7 @@ import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 export class RegisterComponent implements OnInit {
   cliente: Cliente = Cliente.newCliente();
   atualizando: boolean = false;
+  snackbar = inject(MatSnackBar);
 
   constructor(
     private service: ClienteService,
@@ -57,9 +59,19 @@ export class RegisterComponent implements OnInit {
     if (!this.atualizando) {
       this.service.salvar(this.cliente);
       this.cliente = Cliente.newCliente();
+      this.mostrarMensagem("Cliente cadastrado com sucesso!");
     } else {
       this.service.atualizar(this.cliente);
       this.router.navigate(["/consultation"]);
+      this.mostrarMensagem("Cliente atualizado com sucesso!");
     }
+  }
+
+  mostrarMensagem(message: string) {
+    this.snackbar.open(message, "OK", {
+      duration: 3000,
+      verticalPosition: "top",
+      horizontalPosition: "right",
+    });
   }
 }
