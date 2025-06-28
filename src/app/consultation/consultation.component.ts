@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -10,6 +10,7 @@ import { Cliente } from "../register/cliente";
 import { MatTableModule } from "@angular/material/table";
 import { CommonModule } from "@angular/common";
 import { Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-consultation",
@@ -27,6 +28,7 @@ import { Router } from "@angular/router";
   styleUrl: "./consultation.component.scss",
 })
 export class ConsultationComponent implements OnInit {
+  snackbar = inject(MatSnackBar);
   listaClientes: Cliente[] = [];
   colunasTabela: string[] = [
     "id",
@@ -60,6 +62,7 @@ export class ConsultationComponent implements OnInit {
   }
   deletar(cliente: Cliente): void {
     this.service.deletar(cliente);
+    this.snackbar.open("Cliente atualizado com sucesso!", "Ok");
     this.listaClientes = this.service.pesquisarCliente("");
   }
 }
