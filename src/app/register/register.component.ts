@@ -10,6 +10,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { Cliente } from "./cliente";
 import { ClienteService } from "../cliente.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 
 @Component({
   selector: "app-register",
@@ -21,7 +22,9 @@ import { ActivatedRoute, Router } from "@angular/router";
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    NgxMaskDirective,
   ],
+  providers: [provideNgxMask()],
   templateUrl: "./register.component.html",
   styleUrl: "./register.component.scss",
 })
