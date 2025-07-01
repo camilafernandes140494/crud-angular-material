@@ -14,6 +14,8 @@ import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { BrasilapiService } from "../brasilapi.service";
 import { Estado, Municipio } from "../brasilapi.models";
+import { MatSelectModule } from "@angular/material/select";
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-register",
@@ -26,6 +28,8 @@ import { Estado, Municipio } from "../brasilapi.models";
     MatIconModule,
     MatButtonModule,
     NgxMaskDirective,
+    MatSelectModule,
+    CommonModule,
   ],
   providers: [provideNgxMask()],
   templateUrl: "./register.component.html",
