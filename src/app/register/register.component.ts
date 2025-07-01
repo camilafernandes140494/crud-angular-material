@@ -59,6 +59,11 @@ export class RegisterComponent implements OnInit {
         if (clienteEncontrado) {
           this.atualizando = true;
           this.cliente = clienteEncontrado;
+          if (this.cliente.uf) {
+            this.carregarMunicipios({
+              value: this.cliente.uf,
+            } as MatSelectChange);
+          }
         }
       }
     });
