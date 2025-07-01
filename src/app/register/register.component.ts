@@ -14,7 +14,7 @@ import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { BrasilapiService } from "../brasilapi.service";
 import { Estado, Municipio } from "../brasilapi.models";
-import { MatSelectModule } from "@angular/material/select";
+import { MatSelectChange, MatSelectModule } from "@angular/material/select";
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -94,6 +94,19 @@ export class RegisterComponent implements OnInit {
       error: (err) => {
         console.error("Erro ao carregar estados:", err);
         this.mostrarMensagem("Erro ao carregar estados.");
+      },
+    });
+  }
+
+  carregarMunicipios(event: MatSelectChange) {
+    const siglaUF = event.value;
+    this.brasilapiService.listarMunicipios(siglaUF).subscribe({
+      next: (ufs) => {
+        this.municipios = ufs;
+        console.log("ufs carregados:", this.municipios);
+      },
+      error: (err) => {
+        this.mostrarMensagem("Erro ao carregar ufs.");
       },
     });
   }
