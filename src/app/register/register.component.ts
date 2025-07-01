@@ -12,6 +12,8 @@ import { ClienteService } from "../cliente.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { BrasilapiService } from "../brasilapi.service";
+import { Estado, Municipio } from "../brasilapi.models";
 
 @Component({
   selector: "app-register",
@@ -33,11 +35,14 @@ export class RegisterComponent implements OnInit {
   cliente: Cliente = Cliente.newCliente();
   atualizando: boolean = false;
   snackbar = inject(MatSnackBar);
+  estados: Estado[] = [];
+  municipios: Municipio[] = [];
 
   constructor(
     private service: ClienteService,
     private route: ActivatedRoute,
     private router: Router,
+    private brasilapiService: BrasilapiService,
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +58,7 @@ export class RegisterComponent implements OnInit {
         }
       }
     });
+    this.carregarUFs();
   }
 
   onSubmit() {
@@ -72,6 +78,19 @@ export class RegisterComponent implements OnInit {
       duration: 3000,
       verticalPosition: "top",
       horizontalPosition: "right",
+    });
+  }
+
+  carregarUFs() {
+    this.brasilapiService.listarUFs().subscribe({
+      next: (est) => {
+        this.estados = est;
+        console.log("Estados carregados:", this.estados);
+      },
+      error: (err) => {
+        console.error("Erro ao carregar estados:", err);
+        this.mostrarMensagem("Erro ao carregar estados.");
+      },
     });
   }
 }
